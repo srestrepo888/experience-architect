@@ -1,0 +1,983 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Perfect Consistent Color System - No White Backgrounds */
+    --background: 26 27% 96%; /* #F5F2EF - Consistent warm background */
+    --foreground: 26 4% 15%; /* #262421 - Perfect contrast text */
+
+    --card: 26 27% 97%; /* #F7F5F2 - Slightly elevated, no white */
+    --card-foreground: 26 4% 15%;
+
+    --popover: 26 27% 96%;
+    --popover-foreground: 26 4% 15%;
+
+    --primary: 26 4% 12%; /* #1F1D1B - Sophisticated primary */
+    --primary-foreground: 26 27% 97%;
+
+    --secondary: 26 27% 94%; /* #F0EDEA - Subtle secondary, no white */
+    --secondary-foreground: 26 4% 25%; /* #403E3A */
+
+    --muted: 26 20% 93%; /* #EDEAE6 - Perfect muted background, no white */
+    --muted-foreground: 26 4% 35%; /* #5A5754 */
+
+    --accent: 26 4% 15%; /* Consistent with foreground */
+    --accent-foreground: 26 27% 97%;
+
+    --destructive: 0 65% 50%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 26 15% 88%; /* #E5E1DD - Sophisticated borders */
+    --input: 26 15% 88%;
+    --ring: 26 10% 80%; /* #D1CCC6 - Perfect focus rings */
+
+    --radius: 0.5rem; /* 8px - Perfect border radius */
+
+    /* Sophisticated Typography System - Elegant & Delicate */
+    --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-serif: "Playfair Display", "Cormorant Garamond", Georgia, Cambria, "Times New Roman", serif;
+    --font-elegant: "Cormorant", "Playfair Display", Georgia, serif;
+    --font-display: "Playfair Display", "Cormorant", Georgia, serif;
+    --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+
+    /* Perfect Shadows */
+    --shadow-subtle: 0 1px 2px rgba(38, 36, 33, 0.04);
+    --shadow-soft: 0 2px 8px rgba(38, 36, 33, 0.06);
+    --shadow-medium: 0 4px 16px rgba(38, 36, 33, 0.08);
+    --shadow-strong: 0 8px 32px rgba(38, 36, 33, 0.12);
+    --shadow-dramatic: 0 16px 64px rgba(38, 36, 33, 0.16);
+
+    /* iOS Safe Area Support */
+    --safe-area-inset-top: env(safe-area-inset-top);
+    --safe-area-inset-right: env(safe-area-inset-right);
+    --safe-area-inset-bottom: env(safe-area-inset-bottom);
+    --safe-area-inset-left: env(safe-area-inset-left);
+  }
+
+  .dark {
+    --background: 27 3% 8%; /* #141312 - Deep sophisticated dark */
+    --foreground: 30 25% 92%; /* #EBE7E2 - Perfect light text */
+
+    --card: 27 3% 10%; /* #1A1918 - No white in dark mode */
+    --card-foreground: 30 25% 92%;
+
+    --popover: 27 3% 8%;
+    --popover-foreground: 30 25% 92%;
+
+    --primary: 26 30% 85%; /* #DDD0C1 - Warm light primary */
+    --primary-foreground: 27 3% 8%;
+
+    --secondary: 27 3% 14%; /* #242220 - No white */
+    --secondary-foreground: 30 20% 75%; /* #BFB8B1 */
+
+    --muted: 27 3% 12%; /* #1F1E1C - No white */
+    --muted-foreground: 30 15% 65%; /* #A8A19A */
+
+    --accent: 26 30% 85%;
+    --accent-foreground: 27 3% 8%;
+
+    --destructive: 0 60% 55%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 27 3% 18%; /* #2E2C2A */
+    --input: 27 3% 18%;
+    --ring: 26 4% 30%; /* #4D4A47 */
+
+    /* Dark mode shadows */
+    --shadow-subtle: 0 1px 2px rgba(0, 0, 0, 0.2);
+    --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.25);
+    --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.3);
+    --shadow-strong: 0 8px 32px rgba(0, 0, 0, 0.35);
+    --shadow-dramatic: 0 16px 64px rgba(0, 0, 0, 0.4);
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-feature-settings: "rlig" 1, "calt" 1, "liga" 1, "kern" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: var(--font-body);
+    font-weight: 300;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body,
+  html {
+    height: 100%;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: hsl(var(--primary) / 0.2);
+    color: hsl(var(--foreground));
+  }
+
+  .dark ::selection {
+    background-color: hsl(var(--primary) / 0.3);
+  }
+
+  :focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px hsl(var(--ring)), 0 0 0 4px hsl(var(--background));
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    outline: none;
+    box-shadow: 0 0 0 2px hsl(var(--ring)), 0 0 0 4px hsl(var(--background));
+  }
+
+  a,
+  button {
+    transition: all 0.2s ease-out;
+  }
+
+  .interactive-element {
+    transition: all 0.2s ease-out;
+  }
+
+  @media (hover: hover) {
+    .interactive-element:hover {
+      transform: translateZ(0);
+    }
+  }
+
+  .interactive-element:active {
+    transform: translateZ(0) scale(0.95);
+  }
+
+  section {
+    position: relative;
+  }
+
+  .container {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  @media (min-width: 768px) {
+    .container {
+      padding-left: 32px;
+      padding-right: 32px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 48px;
+      padding-right: 48px;
+    }
+  }
+
+  .bg-white {
+    background-color: hsl(var(--background));
+  }
+
+  input,
+  textarea,
+  select {
+    background-color: hsl(var(--background));
+    border: 1px solid hsl(var(--input));
+    color: hsl(var(--foreground));
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: hsl(var(--muted-foreground));
+  }
+
+  button {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    border: 1px solid hsl(var(--input));
+  }
+}
+
+/* Sophisticated Typography Classes */
+.font-serif {
+  font-family: var(--font-serif);
+  font-feature-settings: "liga" 1, "kern" 1, "calt" 1;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+  font-feature-settings: "liga" 1, "kern" 1;
+  font-weight: 300;
+  letter-spacing: 0.01em;
+}
+
+.font-elegant {
+  font-family: var(--font-elegant);
+  font-feature-settings: "liga" 1, "kern" 1, "calt" 1;
+  font-weight: 300;
+  letter-spacing: 0.03em;
+}
+
+.font-display {
+  font-family: var(--font-display);
+  font-feature-settings: "liga" 1, "kern" 1, "calt" 1;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+.font-body {
+  font-family: var(--font-body);
+  font-feature-settings: "liga" 1, "kern" 1;
+  font-weight: 300;
+  letter-spacing: 0.01em;
+}
+
+/* Refined Font Weights - Delicate & Sophisticated */
+.font-light {
+  font-weight: 200;
+}
+
+.font-extralight {
+  font-weight: 200;
+}
+
+.font-thin {
+  font-weight: 100;
+}
+
+.font-normal {
+  font-weight: 300;
+}
+
+.font-medium {
+  font-weight: 400;
+}
+
+.font-semibold {
+  font-weight: 500;
+}
+
+.font-bold {
+  font-weight: 600;
+}
+
+/* iOS Safe Area Support */
+.safe-top {
+  padding-top: var(--safe-area-inset-top);
+}
+
+.safe-bottom {
+  padding-bottom: var(--safe-area-inset-bottom);
+}
+
+.safe-left {
+  padding-left: var(--safe-area-inset-left);
+}
+
+.safe-right {
+  padding-right: var(--safe-area-inset-right);
+}
+
+.safe-x {
+  padding-left: var(--safe-area-inset-left);
+  padding-right: var(--safe-area-inset-right);
+}
+
+.safe-y {
+  padding-top: var(--safe-area-inset-top);
+  padding-bottom: var(--safe-area-inset-bottom);
+}
+
+/* Touch Targets */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Typography */
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Shadows */
+.shadow-subtle {
+  box-shadow: var(--shadow-subtle);
+}
+
+.shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+
+.shadow-medium {
+  box-shadow: var(--shadow-medium);
+}
+
+.shadow-strong {
+  box-shadow: var(--shadow-strong);
+}
+
+.shadow-dramatic {
+  box-shadow: var(--shadow-dramatic);
+}
+
+/* Dividers */
+.divider-subtle {
+  border-bottom: 1px solid hsl(var(--border) / 0.5);
+}
+
+.divider-elegant {
+  border-bottom: 1px solid hsl(var(--border) / 0.3);
+  background: linear-gradient(90deg, transparent, hsl(var(--border) / 0.3), transparent);
+}
+
+/* Animations */
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.8s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.6s ease-out forwards;
+}
+
+/* Layout Utilities */
+.section-padding {
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+}
+
+.container-padding {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+@media (min-width: 768px) {
+  .container-padding {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-padding {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+}
+
+/* Grid System */
+.grid-perfect {
+  display: grid;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .grid-perfect {
+    gap: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-perfect {
+    gap: 48px;
+  }
+}
+
+/* Aspect Ratios */
+.aspect-golden {
+  aspect-ratio: 1.618 / 1;
+}
+
+.aspect-photo {
+  aspect-ratio: 4 / 3;
+}
+
+.aspect-hero {
+  aspect-ratio: 16 / 9;
+}
+
+.aspect-portrait {
+  aspect-ratio: 3 / 4;
+}
+
+/* Text Effects */
+.text-gradient {
+  background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-sophisticated {
+  font-feature-settings: "liga" 1, "kern" 1, "calt" 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hover Effects */
+.hover-lift {
+  transition: all 0.3s ease-out;
+}
+
+@media (hover: hover) {
+  .hover-lift:hover {
+    transform: translateZ(0) translateY(-4px);
+    box-shadow: var(--shadow-medium);
+  }
+}
+
+.hover-glow {
+  transition: all 0.3s ease-out;
+}
+
+@media (hover: hover) {
+  .hover-glow:hover {
+    box-shadow: var(--shadow-strong);
+    filter: brightness(1.05);
+  }
+}
+
+/* Backdrop */
+.backdrop-perfect {
+  backdrop-filter: blur(20px) saturate(180%);
+  background: hsl(var(--background) / 0.8);
+  border: 1px solid hsl(var(--border) / 0.2);
+}
+
+.dark .backdrop-perfect {
+  background: hsl(var(--background) / 0.9);
+}
+
+/* Sophisticated Fluid Typography - Elegant Scale */
+.text-fluid-xs {
+  font-size: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+.text-fluid-sm {
+  font-size: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+}
+
+.text-fluid-base {
+  font-size: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+}
+
+.text-fluid-lg {
+  font-size: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+}
+
+.text-fluid-xl {
+  font-size: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+}
+
+.text-fluid-2xl {
+  font-size: clamp(1.5rem, 1.3rem + 1vw, 2rem);
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+}
+
+.text-fluid-3xl {
+  font-size: clamp(2rem, 1.7rem + 1.5vw, 3rem);
+  line-height: 1.2;
+  letter-spacing: 0.03em;
+}
+
+.text-fluid-4xl {
+  font-size: clamp(3rem, 2.5rem + 2.5vw, 4.5rem);
+  line-height: 1.1;
+  letter-spacing: 0.04em;
+}
+
+.text-fluid-5xl {
+  font-size: clamp(4.5rem, 3.5rem + 5vw, 6rem);
+  line-height: 1.05;
+  letter-spacing: 0.05em;
+}
+
+/* Elegant Typography Variants */
+.text-elegant-xs {
+  font-family: var(--font-elegant);
+  font-size: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  font-weight: 300;
+  line-height: 1.6;
+  letter-spacing: 0.03em;
+}
+
+.text-elegant-sm {
+  font-family: var(--font-elegant);
+  font-size: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+  font-weight: 300;
+  line-height: 1.6;
+  letter-spacing: 0.03em;
+}
+
+.text-elegant-base {
+  font-family: var(--font-elegant);
+  font-size: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+  font-weight: 300;
+  line-height: 1.6;
+  letter-spacing: 0.03em;
+}
+
+.text-elegant-lg {
+  font-family: var(--font-elegant);
+  font-size: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);
+  font-weight: 300;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+}
+
+.text-elegant-xl {
+  font-family: var(--font-elegant);
+  font-size: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+  font-weight: 300;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+}
+
+.text-elegant-2xl {
+  font-family: var(--font-elegant);
+  font-size: clamp(1.5rem, 1.3rem + 1vw, 2rem);
+  font-weight: 300;
+  line-height: 1.3;
+  letter-spacing: 0.05em;
+}
+
+.text-elegant-3xl {
+  font-family: var(--font-elegant);
+  font-size: clamp(2rem, 1.7rem + 1.5vw, 3rem);
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+}
+
+.text-elegant-4xl {
+  font-family: var(--font-elegant);
+  font-size: clamp(3rem, 2.5rem + 2.5vw, 4.5rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: 0.08em;
+}
+
+.text-elegant-5xl {
+  font-family: var(--font-elegant);
+  font-size: clamp(4.5rem, 3.5rem + 5vw, 6rem);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: 0.1em;
+}
+
+/* Display Typography - For Headlines */
+.text-display-xs {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+  font-weight: 300;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+}
+
+.text-display-sm {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 1.3rem + 1vw, 2rem);
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: 0.03em;
+}
+
+.text-display-base {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 1.7rem + 1.5vw, 3rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: 0.04em;
+}
+
+.text-display-lg {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 2.5rem + 2.5vw, 4.5rem);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: 0.06em;
+}
+
+.text-display-xl {
+  font-family: var(--font-display);
+  font-size: clamp(4.5rem, 3.5rem + 5vw, 6rem);
+  font-weight: 300;
+  line-height: 1.02;
+  letter-spacing: 0.08em;
+}
+
+.text-display-2xl {
+  font-family: var(--font-display);
+  font-size: clamp(6rem, 4.5rem + 7.5vw, 8rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: 0.1em;
+}
+
+/* Responsive Grid */
+.grid-responsive-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.grid-responsive-2 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.grid-responsive-3 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.grid-responsive-4 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+@media (min-width: 640px) {
+  .grid-responsive-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grid-responsive-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grid-responsive-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 768px) {
+  .grid-responsive-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .grid-responsive-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Image Responsive */
+.image-responsive {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  object-fit: cover;
+}
+
+/* Text Responsive Balance */
+.text-responsive-balance {
+  text-wrap: balance;
+}
+
+@media (max-width: 640px) {
+  .text-responsive-balance {
+    text-wrap: pretty;
+  }
+}
+
+/* iOS Specific */
+.ios-scroll {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+.ios-modal {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+/* Keyframe Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@-webkit-keyframes slideUp {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@-webkit-keyframes scaleIn {
+  from {
+    opacity: 0;
+    -webkit-transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: scale(1);
+  }
+}
+
+/* Mobile Optimizations */
+@media (max-width: 428px) {
+  .section-padding {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  .container-padding {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+@media (max-width: 390px) {
+  .section-padding {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .container-padding {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+@media (max-width: 375px) {
+  .section-padding {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .container-padding {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background-color: white;
+    color: black;
+  }
+
+  .backdrop-perfect {
+    background-color: white;
+  }
+}
+
+/* Landscape Mobile */
+@media (orientation: landscape) and (max-height: 500px) {
+  .section-padding {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .hero-height {
+    min-height: 60vh;
+  }
+}
+
+@media (orientation: portrait) {
+  .hero-height {
+    min-height: 80vh;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .hover-lift:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .interactive-element {
+    min-height: 44px;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  button,
+  a {
+    min-height: 44px;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .text-sophisticated {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Dark Mode Preference */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+}
+
+/* Custom Background Utilities */
+.bg-radial-gradient {
+  background: radial-gradient(circle at center, transparent 0%, transparent 50%, currentColor 100%);
+}
+
+/* Advanced Animations */
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes subtle-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 15s ease infinite;
+}
+
+.animate-subtle-float {
+  animation: subtle-float 6s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 2s linear infinite;
+}
+
+/* Sophisticated Hover Effects */
+.hover-lift-sophisticated {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@media (hover: hover) {
+  .hover-lift-sophisticated:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.hover-glow-sophisticated {
+  transition: all 0.3s ease-out;
+}
+
+@media (hover: hover) {
+  .hover-glow-sophisticated:hover {
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
+    filter: brightness(1.05);
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    }
+} 
