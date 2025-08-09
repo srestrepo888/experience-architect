@@ -1,128 +1,237 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: ["class"],
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  prefix: "",
   theme: {
-    container: {
-      center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
-    },
     extend: {
-      spacing: {
-        "2xs": "4px",
-        xs: "8px",
-        sm: "12px",
-        md: "16px",
-        lg: "24px",
-        xl: "32px",
-        "2xl": "48px",
-        "3xl": "64px",
-        "4xl": "96px",
-        "5xl": "128px",
-      },
-      fontFamily: {
-        sans: ["var(--font-sans)"],
-        serif: ["var(--font-serif)"],
-      },
-      fontSize: {
-        'fluid-xs': ['clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem)', { lineHeight: '1.4' }],
-        'fluid-sm': ['clamp(0.875rem, 0.8rem + 0.375vw, 1rem)', { lineHeight: '1.5' }],
-        'fluid-base': ['clamp(1rem, 0.9rem + 0.5vw, 1.125rem)', { lineHeight: '1.6' }],
-        'fluid-lg': ['clamp(1.125rem, 1rem + 0.625vw, 1.25rem)', { lineHeight: '1.5' }],
-        'fluid-xl': ['clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem)', { lineHeight: '1.4' }],
-        'fluid-2xl': ['clamp(1.5rem, 1.3rem + 1vw, 2rem)', { lineHeight: '1.3' }],
-        'fluid-3xl': ['clamp(2rem, 1.7rem + 1.5vw, 2.5rem)', { lineHeight: '1.2' }],
-        'fluid-4xl': ['clamp(2.5rem, 2.1rem + 2vw, 3.5rem)', { lineHeight: '1.1' }],
-        'fluid-5xl': ['clamp(3rem, 2.5rem + 2.5vw, 4rem)', { lineHeight: '1' }],
-      },
+      // COHESIVE COLOR SYSTEM - Warm Neutrals, No Pure White
       colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
+        // Background System
+        background: {
+          primary: "var(--color-background-primary)",
+          secondary: "var(--color-background-secondary)",
+          tertiary: "var(--color-background-tertiary)",
+          card: "var(--color-background-card)",
+          muted: "var(--color-background-muted)",
+        },
+        
+        // Foreground System - Deep Charcoal for Text
+        foreground: {
+          primary: "var(--color-foreground-primary)",
+          secondary: "var(--color-foreground-secondary)",
+          muted: "var(--color-foreground-muted)",
+          subtle: "var(--color-foreground-subtle)",
+        },
+        
+        // Primary/Secondary System
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: "var(--color-primary)",
+          foreground: "var(--color-primary-foreground)",
         },
+        
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+          DEFAULT: "var(--color-secondary)",
+          foreground: "var(--color-secondary-foreground)",
         },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
+        
+        // Muted System for Layers
         muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
+          DEFAULT: "var(--color-muted)",
+          foreground: "var(--color-muted-foreground)",
         },
+        
+        // Border System
+        border: {
+          DEFAULT: "var(--color-border)",
+          subtle: "var(--color-border-subtle)",
+          accent: "var(--color-border-accent)",
+        },
+        
+        // Accent System - Subtle, Meaningful
         accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
+          gold: "var(--color-accent-gold)",
+          bronze: "var(--color-accent-bronze)",
+          copper: "var(--color-accent-copper)",
         },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
-        },
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
-        },
-        sophisticated: "hsl(var(--sophisticated))",
-        // Brand colors for sophisticated design
+        
+        // Legacy brand colors mapped to new system
         brand: {
-          creme_rose_bg: "#FDF8F3",
-          night_deep_bg: "#0A0A0A",
-          night_subtle_bg: "#1A1A1A",
-          charcoal_soft_text: "#2A2A2A",
-          moonstone_light_text: "#F5F5F5",
-          graphite_medium_text: "#4A4A4A",
-          moonstone_medium_text: "#E0E0E0",
-        },
+          creme_rose_bg: "var(--color-background-primary)",
+          night_deep_bg: "var(--color-foreground-primary)",
+          charcoal_soft_text: "var(--color-foreground-primary)",
+          moonstone_light_text: "var(--color-background-primary)",
+          graphite_medium_text: "var(--color-foreground-secondary)",
+          moonstone_medium_text: "var(--color-foreground-muted)",
+        }
       },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+
+      // TYPOGRAPHIC HIERARCHY WITH INTENT
+      fontFamily: {
+        // Display/Headings: Cormorant Garamond; Body/UI: Inter
+        display: ["Cormorant Garamond", "serif"],
+        body: ["Inter", "sans-serif"],
+        sans: ["Inter", "sans-serif"],
+        elegant: ["Cormorant Garamond", "serif"],
+        
+        // Legacy font mappings
+        "luxury-display": ["Cormorant Garamond", "serif"],
+        "luxury-serif": ["Cormorant Garamond", "serif"],
+        "luxury-sans": ["Inter", "sans-serif"],
+        "luxury-elegant": ["Cormorant Garamond", "serif"],
       },
-      keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
-        },
+
+      // SPATIAL RHYTHM AND STRUCTURE - 8px Grid
+      spacing: {
+        "4xs": "var(--spacing-4xs)",
+        "3xs": "var(--spacing-3xs)",
+        "2xs": "var(--spacing-2xs)",
+        xs: "var(--spacing-xs)",
+        sm: "var(--spacing-sm)",
+        md: "var(--spacing-md)",
+        lg: "var(--spacing-lg)",
+        xl: "var(--spacing-xl)",
+        "2xl": "var(--spacing-2xl)",
+        "3xl": "var(--spacing-3xl)",
+        "4xl": "var(--spacing-4xl)",
       },
+
+      // Predictable Containers
+      maxWidth: {
+        "content": "65ch",
+        "wide": "75ch",
+        "narrow": "45ch",
+      },
+
+      // SUBTLE, MEANINGFUL MOTION
       animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
+        "fade-in": "fadeIn var(--duration-normal) var(--ease-primary)",
+        "slide-in": "slideIn var(--duration-normal) var(--ease-primary)",
+        "scale-in": "scaleIn var(--duration-normal) var(--ease-primary)",
       },
+
+      // TEXTURE AND MATERIALITY
       boxShadow: {
         subtle: "var(--shadow-subtle)",
         soft: "var(--shadow-soft)",
         medium: "var(--shadow-medium)",
         strong: "var(--shadow-strong)",
-        dramatic: "var(--shadow-dramatic)",
+      },
+
+      // PERFORMANCE AND POLISH
+      aspectRatio: {
+        "square": "1 / 1",
+        "portrait": "3 / 4",
+        "landscape": "16 / 9",
+        "hero": "21 / 9",
+      },
+
+      // TOUCH-FIRST ERGONOMICS
+      minHeight: {
+        "touch-target": "var(--touch-target)",
+      },
+
+      // ACCESSIBILITY
+      ringOffsetWidth: {
+        "focus": "2px",
+      },
+
+      // CUSTOM UTILITIES
+      backdropBlur: {
+        "subtle": "4px",
+        "soft": "8px",
+        "medium": "12px",
+      },
+
+      // BACKGROUND IMAGES
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
-  corePlugins: {
-    preflight: true,
-  },
-  variants: {
-    extend: {
-      focusVisible: ['focus-visible'],
+  plugins: [
+    // Custom plugin for design system utilities
+    function({ addUtilities, theme }) {
+      const newUtilities = {
+        // Typography utilities
+        ".text-display": {
+          fontFamily: theme("fontFamily.display"),
+          fontWeight: "300",
+          letterSpacing: "-0.02em",
+        },
+        ".text-body": {
+          fontFamily: theme("fontFamily.body"),
+          fontWeight: "400",
+          lineHeight: "1.7",
+        },
+        ".text-ui": {
+          fontFamily: theme("fontFamily.sans"),
+          fontWeight: "500",
+          letterSpacing: "0.02em",
+        },
+        
+        // Spacing utilities
+        ".space-xs": { marginBottom: theme("spacing.xs") },
+        ".space-sm": { marginBottom: theme("spacing.sm") },
+        ".space-md": { marginBottom: theme("spacing.md") },
+        ".space-lg": { marginBottom: theme("spacing.lg") },
+        ".space-xl": { marginBottom: theme("spacing.xl") },
+        ".space-2xl": { marginBottom: theme("spacing.2xl") },
+        
+        // Container utilities
+        ".container": {
+          width: "100%",
+          maxWidth: theme("maxWidth.content"),
+          margin: "0 auto",
+          padding: `0 ${theme("spacing.xs")}`,
+        },
+        ".container-wide": {
+          maxWidth: theme("maxWidth.wide"),
+        },
+        ".container-full": {
+          maxWidth: "none",
+        },
+        ".container-narrow": {
+          maxWidth: theme("maxWidth.narrow"),
+        },
+        
+        // Section utilities
+        ".section": {
+          padding: `${theme("spacing.xl")} ${theme("spacing.xs")}`,
+        },
+        
+        // Grid system
+        ".grid-system": {
+          display: "grid",
+          gap: theme("spacing.md"),
+        },
+        
+        // Focus utilities
+        ".focus-ring": {
+          outline: "none",
+          boxShadow: "var(--focus-ring)",
+        },
+        
+        // Screen reader only
+        ".sr-only": {
+          position: "absolute",
+          width: "1px",
+          height: "1px",
+          padding: "0",
+          margin: "-1px",
+          overflow: "hidden",
+          clip: "rect(0, 0, 0, 0)",
+          whiteSpace: "nowrap",
+          border: "0",
+        },
+      }
+      
+      addUtilities(newUtilities, {
+        respectPrefix: false,
+        respectImportant: false,
+      })
     },
-  },
+  ],
 } 

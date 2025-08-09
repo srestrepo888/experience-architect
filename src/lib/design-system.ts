@@ -1,168 +1,322 @@
-// lib/design-system.ts
-// THE SINGLE SOURCE OF TRUTH FOR ALL DESIGN TOKENS
-// Enhanced with sophisticated layout and spacing system
+// DESIGN SYSTEM - SINGLE SOURCE OF TRUTH
+// Implementing cohesive color system with warm neutrals, no pure white
+// Deep charcoal for text, subtle tints for layers
 
-// Based on 8px grid system with golden ratio for visual harmony
 export const DESIGN_SYSTEM = {
-  spacing: {
-    // Micro spacing for fine-tuned control
-    "4xs": "2px",
-    "3xs": "4px",
-    "2xs": "6px",
-    xs: "8px",
-    sm: "12px",
-    md: "16px",
-    lg: "24px",
-    xl: "32px",
-    "2xl": "48px",
-    "3xl": "64px",
-    "4xl": "96px",
-    "5xl": "128px",
-    "6xl": "160px",
-    "7xl": "192px",
-    // Special spacing for dramatic effects
-    dramatic: "48px md:64px lg:96px",
-    hero: "64px md:96px lg:128px",
-  },
-  containers: {
-    // Refined container system with better proportions
-    content: "max-w-[1200px] mx-auto",
-    wide: "max-w-[1400px] mx-auto",
-    full: "max-w-none",
-    narrow: "max-w-[800px] mx-auto",
-    // Special containers for different content types
-    text: "max-w-[65ch] mx-auto", // Optimal reading width
-    card: "max-w-[400px] mx-auto",
-  },
-  padding: {
-    // Enhanced padding system with better responsive behavior
-    mobile: "px-4 sm:px-6",
-    tablet: "px-6 md:px-8",
-    desktop: "px-8 lg:px-12 xl:px-16",
-    // Special padding for different contexts
-    section: "px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16",
-    card: "px-6 md:px-8 lg:px-10",
-    hero: "px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20",
-  },
-  sections: {
-    spacing: {
-      // Refined section spacing with better visual hierarchy
-      compact: "py-8 md:py-12",
-      normal: "py-12 md:py-16 lg:py-20",
-      spacious: "py-16 md:py-24 lg:py-32",
-      hero: "pt-20 pb-12 md:pt-32 md:pb-20 lg:pt-40 lg:pb-24",
-      // Special section types
-      showcase: "py-20 md:py-32 lg:py-40",
-      contact: "py-16 md:py-24 lg:py-32",
+  // COHESIVE COLOR SYSTEM - Warm Neutrals, No Pure White
+  colors: {
+    // Background System - Warm, Sophisticated
+    background: {
+      primary: "#FDFBF7", // Warm cream - no pure white
+      secondary: "#F8F6F2", // Subtle beige tint
+      tertiary: "#F5F2EF", // Deeper warm tone
+      card: "rgba(253, 251, 247, 0.95)", // Translucent card surface
+      muted: "#F0EDE8", // Subtle muted background
     },
-    headerMargin: "mb-8 md:mb-12 lg:mb-16",
-    contentMargin: "mb-12 md:mb-16 lg:mb-20",
+    
+    // Foreground System - Deep Charcoal for Text
+    foreground: {
+      primary: "#1C1C1C", // Deep charcoal for primary text
+      secondary: "#2A2A2A", // Slightly lighter for secondary
+      muted: "#4A4A4A", // Muted text for less emphasis
+      subtle: "#6B6B6B", // Very subtle text
+    },
+    
+    // Primary/Secondary System
+    primary: {
+      DEFAULT: "#1C1C1C", // Deep charcoal
+      foreground: "#FDFBF7", // Warm cream
+    },
+    
+    secondary: {
+      DEFAULT: "#2A2A2A", // Sophisticated graphite
+      foreground: "#F8F6F2", // Subtle beige
+    },
+    
+    // Muted System for Layers
+    muted: {
+      DEFAULT: "#F0EDE8", // Subtle muted background
+      foreground: "#4A4A4A", // Muted text
+    },
+    
+    // Border System
+    border: {
+      DEFAULT: "#E5E0D8", // Warm border color
+      subtle: "#EDEAE5", // Very subtle border
+      accent: "#D4C8B8", // Accent border
+    },
+    
+    // Accent System - Subtle, Meaningful
+    accent: {
+      gold: "#D4AF37", // Sophisticated gold
+      bronze: "#CD7F32", // Warm bronze
+      copper: "#B87333", // Rich copper
+    },
+    
+    // Legacy brand colors mapped to new system
+    brand: {
+      creme_rose_bg: "#FDFBF7", // Maps to background.primary
+      night_deep_bg: "#1C1C1C", // Maps to foreground.primary
+      charcoal_soft_text: "#1C1C1C", // Maps to foreground.primary
+      moonstone_light_text: "#FDFBF7", // Maps to background.primary
+      graphite_medium_text: "#2A2A2A", // Maps to foreground.secondary
+      moonstone_medium_text: "#4A4A4A", // Maps to foreground.muted
+    }
   },
+
+  // TYPOGRAPHIC HIERARCHY WITH INTENT
   typography: {
-    // Enhanced typography spacing
-    paragraphSpacing: "space-y-6 md:space-y-8",
-    headingSpacing: "mb-4 md:mb-6 lg:mb-8",
-    sectionSpacing: "mb-12 md:mb-16 lg:mb-20",
-    // Line height optimization
-    lineHeight: {
-      tight: "leading-tight",
-      normal: "leading-relaxed",
-      loose: "leading-loose",
+    // Font Families - Cormorant Garamond for Display/Headings, Inter for Body/UI
+    fonts: {
+      display: "Cormorant Garamond, serif", // Display/Headings
+      body: "Inter, sans-serif", // Body/UI
+      elegant: "Cormorant Garamond, serif", // Elegant variants
+      sans: "Inter, sans-serif", // UI elements
     },
+    
+    // Fluid Scale System
+    scale: {
+      xs: "clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem)",
+      sm: "clamp(0.875rem, 0.8rem + 0.375vw, 1rem)",
+      base: "clamp(1rem, 0.9rem + 0.5vw, 1.125rem)",
+      lg: "clamp(1.125rem, 1rem + 0.625vw, 1.25rem)",
+      xl: "clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem)",
+      "2xl": "clamp(1.5rem, 1.3rem + 1vw, 2rem)",
+      "3xl": "clamp(2rem, 1.7rem + 1.5vw, 3rem)",
+      "4xl": "clamp(3rem, 2.5rem + 2.5vw, 4.5rem)",
+      "5xl": "clamp(4.5rem, 3.5rem + 5vw, 6rem)",
+    },
+    
+    // Typography Components
+    components: {
+      display: {
+        fontFamily: "Cormorant Garamond, serif",
+        fontWeight: "300",
+        letterSpacing: "-0.02em", // Tight tracking on displays
+        lineHeight: "1.1",
+      },
+      heading: {
+        fontFamily: "Cormorant Garamond, serif",
+        fontWeight: "400",
+        letterSpacing: "-0.01em",
+        lineHeight: "1.2",
+      },
+      body: {
+        fontFamily: "Inter, sans-serif",
+        fontWeight: "400",
+        letterSpacing: "0.01em",
+        lineHeight: "1.7", // Generous line-height on body
+      },
+      ui: {
+        fontFamily: "Inter, sans-serif",
+        fontWeight: "500",
+        letterSpacing: "0.02em",
+        lineHeight: "1.5",
+      }
+    },
+    
+    // Readable Copy Measures
+    measures: {
+      narrow: "45ch", // Short text
+      readable: "65ch", // Optimal reading width
+      wide: "75ch", // Wide content
+    }
   },
-  grid: {
-    // Sophisticated grid system
-    gap: {
-      xs: "gap-4 md:gap-6",
-      sm: "gap-6 md:gap-8",
-      md: "gap-8 md:gap-12",
-      lg: "gap-12 md:gap-16",
-      xl: "gap-16 md:gap-24",
-      dramatic: "gap-8 md:gap-12 lg:gap-16 xl:gap-24",
-    },
-    columns: {
-      auto: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
-      wide: "grid-cols-1 md:grid-cols-2 lg:grid-cols-4",
-      narrow: "grid-cols-1 lg:grid-cols-2",
-    },
+
+  // SPATIAL RHYTHM AND STRUCTURE - 8px Grid
+  spacing: {
+    // 8px Grid System
+    "4xs": "4px",   // 0.5 * 8px
+    "3xs": "8px",   // 1 * 8px
+    "2xs": "12px",  // 1.5 * 8px
+    xs: "16px",     // 2 * 8px
+    sm: "24px",     // 3 * 8px
+    md: "32px",     // 4 * 8px
+    lg: "48px",     // 6 * 8px
+    xl: "64px",     // 8 * 8px
+    "2xl": "96px",  // 12 * 8px
+    "3xl": "128px", // 16 * 8px
+    "4xl": "160px", // 20 * 8px
   },
-  layout: {
-    // Advanced layout utilities
-    stack: {
-      xs: "space-y-2",
-      sm: "space-y-4",
-      md: "space-y-6",
-      lg: "space-y-8",
-      xl: "space-y-12",
-      dramatic: "space-y-8 md:space-y-12 lg:space-y-16",
-    },
-    cluster: {
-      xs: "flex flex-wrap gap-2",
-      sm: "flex flex-wrap gap-4",
-      md: "flex flex-wrap gap-6",
-      lg: "flex flex-wrap gap-8",
-    },
-    center: "flex items-center justify-center",
-    between: "flex items-center justify-between",
-    start: "flex items-center justify-start",
-    end: "flex items-center justify-end",
+
+  // Predictable Containers
+  containers: {
+    content: "max-w-[65ch] mx-auto", // Readable content width
+    wide: "max-w-[75ch] mx-auto",    // Wide content
+    full: "max-w-none",              // Full width
+    narrow: "max-w-[45ch] mx-auto",  // Narrow content
   },
-  margins: {
-    // Sophisticated margin system
-    auto: "mx-auto",
-    section: "mx-4 sm:mx-6 md:mx-8 lg:mx-12 xl:mx-16",
-    content: "mx-4 sm:mx-6 md:mx-auto max-w-[1200px]",
-    // Vertical margins
-    top: {
-      xs: "mt-4",
-      sm: "mt-6",
-      md: "mt-8",
-      lg: "mt-12",
-      xl: "mt-16",
-      dramatic: "mt-12 md:mt-16 lg:mt-20",
+
+  // Section Scaffolding
+  sections: {
+    padding: {
+      mobile: "py-16 px-4",      // Mobile padding
+      tablet: "py-24 px-6",      // Tablet padding
+      desktop: "py-32 px-8",     // Desktop padding
+      hero: "py-40 px-4 md:px-8", // Hero section padding
     },
-    bottom: {
-      xs: "mb-4",
-      sm: "mb-6",
-      md: "mb-8",
-      lg: "mb-12",
-      xl: "mb-16",
-      dramatic: "mb-12 md:mb-16 lg:mb-20",
-    },
+    spacing: {
+      compact: "space-y-16",     // Compact sections
+      normal: "space-y-24",      // Normal sections
+      spacious: "space-y-32",    // Spacious sections
+      hero: "space-y-40",        // Hero spacing
+    }
   },
-  animation: {
-    fadeIn: {
-      initial: { opacity: 0, y: 20 },
-      whileInView: { opacity: 1, y: 0 },
-      viewport: { once: true, margin: "-100px" },
-      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+
+  // COMPONENT CONSISTENCY VIA TOKENS
+  components: {
+    // Button System
+    button: {
+      padding: {
+        sm: "8px 16px",
+        md: "12px 24px",
+        lg: "16px 32px",
+      },
+      borderRadius: "8px",
+      fontSize: "14px",
+      fontWeight: "500",
+      letterSpacing: "0.02em",
     },
-    slideUp: {
-      initial: { opacity: 0, y: 40 },
-      whileInView: { opacity: 1, y: 0 },
-      viewport: { once: true, margin: "-50px" },
-      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+    
+    // Card System
+    card: {
+      padding: "24px",
+      borderRadius: "12px",
+      shadow: "0 4px 16px rgba(28, 28, 28, 0.06)",
+      border: "1px solid #E5E0D8",
     },
+    
+    // Input System
+    input: {
+      padding: "12px 16px",
+      borderRadius: "8px",
+      border: "1px solid #E5E0D8",
+      fontSize: "16px",
+    }
   },
-  // Visual hierarchy system
-  hierarchy: {
-    // Z-index system for layering
-    zIndex: {
-      base: "z-0",
-      content: "z-10",
-      overlay: "z-20",
-      modal: "z-30",
-      tooltip: "z-40",
-      navigation: "z-50",
+
+  // SUBTLE, MEANINGFUL MOTION
+  motion: {
+    // Easing Curves
+    ease: {
+      primary: [0.22, 1, 0.36, 1], // Primary ease curve
+      secondary: [0.25, 0.46, 0.45, 0.94], // Secondary ease
+      bounce: [0.68, -0.55, 0.265, 1.55], // Bounce ease
     },
-    // Shadow system for depth
-    shadow: {
-      sm: "shadow-sm",
-      md: "shadow-md",
-      lg: "shadow-lg",
-      xl: "shadow-xl",
-      "2xl": "shadow-2xl",
-      inner: "shadow-inner",
+    
+    // Duration System
+    duration: {
+      fast: "240ms",
+      normal: "400ms",
+      slow: "600ms",
     },
+    
+    // Animation Variants
+    variants: {
+      fadeIn: {
+        initial: { opacity: 0, y: 20 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] }
+      },
+      slideIn: {
+        initial: { opacity: 0, x: -20 },
+        animate: { opacity: 1, x: 0 },
+        transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] }
+      },
+      scaleIn: {
+        initial: { opacity: 0, scale: 0.95 },
+        animate: { opacity: 1, scale: 1 },
+        transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] }
+      }
+    }
   },
-} as const 
+
+  // TEXTURE AND MATERIALITY
+  shadows: {
+    subtle: "0 2px 8px rgba(28, 28, 28, 0.04)",
+    soft: "0 4px 16px rgba(28, 28, 28, 0.06)",
+    medium: "0 8px 32px rgba(28, 28, 28, 0.08)",
+    strong: "0 16px 64px rgba(28, 28, 28, 0.12)",
+  },
+
+  // ACCESSIBILITY STANDARDS
+  accessibility: {
+    // Focus States
+    focus: {
+      ring: "0 0 0 2px #1C1C1C, 0 0 0 4px #FDFBF7",
+      offset: "2px",
+    },
+    
+    // Contrast Ratios (WCAG AA)
+    contrast: {
+      normal: "4.5:1",
+      large: "3:1",
+    },
+    
+    // Touch Targets
+    touchTarget: "44px",
+  },
+
+  // PERFORMANCE AND POLISH
+  performance: {
+    // Image Loading
+    images: {
+      aspectRatios: {
+        square: "1/1",
+        portrait: "3/4",
+        landscape: "16/9",
+        hero: "21/9",
+      },
+      loading: "lazy",
+      display: "swap",
+    },
+    
+    // Layout Stability
+    layout: {
+      minHeight: "200px",
+      aspectRatio: "16/9",
+    }
+  },
+
+  // TOUCH-FIRST ERGONOMICS
+  touch: {
+    // Minimum Touch Targets
+    minTarget: "44px",
+    
+    // Comfortable Spacing
+    spacing: {
+      touch: "8px",
+      comfortable: "16px",
+      generous: "24px",
+    },
+    
+    // Breakpoints
+    breakpoints: {
+      mobile: "320px",
+      tablet: "768px",
+      desktop: "1024px",
+      wide: "1280px",
+    }
+  }
+} as const
+
+// Utility function to get design tokens
+export function getDesignToken(category: keyof typeof DESIGN_SYSTEM, token: string) {
+  return DESIGN_SYSTEM[category][token as keyof typeof DESIGN_SYSTEM[typeof category]]
+}
+
+// CSS Variable generation
+export function generateCSSVariables() {
+  const variables: Record<string, string> = {}
+  
+  // Color variables
+  Object.entries(DESIGN_SYSTEM.colors).forEach(([category, values]) => {
+    if (typeof values === 'object' && values !== null) {
+      Object.entries(values).forEach(([key, value]) => {
+        variables[`--color-${category}-${key}`] = value
+      })
+    }
+  })
+  
+  return variables
+} 
